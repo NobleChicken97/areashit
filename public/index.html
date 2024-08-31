@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera Capture with Geolocation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="neon-text">Geolocation Capture</h1>
+        <video id="video" autoplay></video>
+        <button id="capture">Capture</button>
+        <button id="show-images">Show Images</button>
+        <canvas id="canvas"></canvas>
+        
+        <div id="image-container"></div>
+        <h1 id="area-disp">Area is: N/A</h1>
+    </div>
+
+    <script src="https://unpkg.com/@turf/turf"></script>
+    <script src="/exif-js/exif.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

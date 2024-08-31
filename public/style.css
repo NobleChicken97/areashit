@@ -1,0 +1,184 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&display=swap');
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: #e0e0e0; /* Darker gray for better visibility */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 600px; /* Adjusted for better spacing */
+    width: 100%;
+    text-align: center;
+    position: relative;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+}
+
+/* Video Styling */
+video {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    width: 100%; /* Full width */
+    max-width: 400px; /* Fixed max width */
+    height: auto;
+    margin-bottom: 20px; /* Increased space below video */
+    transition: transform 0.3s ease;
+}
+
+video:hover {
+    transform: scale(1.05);
+}
+
+/* Button Styling */
+button {
+    padding: 12px 18px;
+    font-size: 14px;
+    font-weight: 500;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 10px; /* Adjusted margin for better spacing */
+    color: #fff;
+    width: 45%; /* Adjusted width for buttons */
+}
+
+/* Green Button */
+button#capture {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+button#capture:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+button#capture:active {
+    background-color: #1c7430;
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Orange Button */
+button#show-images {
+    background-color: #ff9800;
+    border-color: #ff9800;
+}
+
+button#show-images:hover {
+    background-color: #e67e22;
+    border-color: #d35400;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+button#show-images:active {
+    background-color: #c26a00;
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Grid Layout for Images */
+#image-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Fixed 4 columns for horizontal filling */
+    gap: 10px;
+    margin-top: 20px;
+    width: 100%; /* Full width of the container */
+}
+
+/* Preview Image Styling */
+#image-container img {
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#image-container img:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+#image-container img.selected {
+    border-color: #ff9800; /* Highlight selected image */
+    box-shadow: 0 0 15px rgba(255, 152, 0, 0.6); /* Glow effect */
+}
+
+/* Text Styling */
+h1 {
+    font-size: 24px; /* Increased font size */
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(255, 165, 0, 0.6); /* Added neon text effect */
+}
+
+h1#area-disp {
+    font-size: 18px;
+    color: #666;
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+/* Canvas Styling */
+#canvas {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 20px; /* Space below canvas */
+    width: 100%;
+    max-width: 640px; /* Fixed max width */
+}
+
+/* Button Layout Adjustment */
+button#capture, button#show-images {
+    display: inline-block;
+    width: 45%;
+    box-sizing: border-box;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    button {
+        width: 100%;
+    }
+
+    #image-container {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Adjusted for smaller screens */
+    }
+
+    video, #canvas {
+        width: 100%; /* Full width on smaller screens */
+    }
+
+    .container {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 20px;
+    }
+
+    #image-container {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Adjusted for very small screens */
+    }
+}
