@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camera Capture with Geolocation</title>
+    <title>Area calc and map marker</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
     <div class="container">
@@ -12,13 +14,18 @@
         <video id="video" autoplay></video>
         <button id="capture">Capture</button>
         <button id="show-images">Show Images</button>
+        <button id="show-map">Show Map</button>
+<div id="map" style="display: none; width: 100%; height: 400px;"></div>
         <canvas id="canvas"></canvas>
         
         <div id="image-container"></div>
         <h1 id="area-disp">Area is: N/A</h1>
+        <div id="map" style="height: 400px; display: none;"></div>
     </div>
 
     <script src="https://unpkg.com/@turf/turf"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+   
     <script src="/exif-js/exif.js"></script>
     <script src="script.js"></script>
 </body>

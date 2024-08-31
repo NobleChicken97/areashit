@@ -3,10 +3,15 @@ const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
 const captureButton = document.getElementById('capture');
 const showImagesButton = document.getElementById('show-images');
+const showMapButton = document.getElementById('show-map');
 const imageContainer = document.getElementById('image-container');
 const areaDisplay = document.getElementById('area-disp');
+const mapContainer = document.getElementById('map');
 let capturedImages = [];
 let locations = []; // Store location data
+let map;
+let markers = [];
+let polygonLayer;
 
 navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } }) // Use the back camera
     .then(stream => {
@@ -40,7 +45,7 @@ captureButton.addEventListener('click', async () => {
             const polygon = turf.polygon([closedLoop]); // Create a polygon from location data
             const area = turf.area(polygon); // Calculate the area
 
-            if(area === 0) {
+            if (area === 0) {
                 console.log('Area calculation returned zero. Possible issue with the points or Turf.js.');
             } else {
                 areaDisplay.innerHTML = 'Area is: ' + area + ' square meters';
@@ -69,6 +74,16 @@ captureButton.addEventListener('click', async () => {
     } catch (error) {
         console.error('Error uploading image:', error);
     }
+});
+
+showImagesButton.addEventListener('click', () => {
+    console.log('Showing images...');
+    displayImages();
+});
+
+showMapButton.addEventListener('click', () => {
+    console.log('Showing map...');
+    displayMap();
 });
 
 function getLocation() {
@@ -100,11 +115,6 @@ function displayImages() {
     });
 }
 
-showImagesButton.addEventListener('click', () => {
-    console.log('Showing images...');
-    displayImages();
-});
-
 function resizeImage(dataURL, maxWidth, maxHeight) {
     return new Promise((resolve, reject) => {
         const img = new Image();
@@ -133,4 +143,44 @@ function resizeImage(dataURL, maxWidth, maxHeight) {
         img.onerror = reject;
         img.src = dataURL;
     });
+}
+
+function displayMap() {
+    if (mapContainer.style.display === 'none') {
+        mapContainer.style.display = 'block';
+    }
+
+    if (!map) {
+        map = L.map('map').setView([0, 0], 13); // Initialize map with default view
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+    }
+
+    if (markers.length) {
+        markers.forEach(marker => map.removeLayer(marker));
+        markers = [];
+    }
+
+    if (polygonLayer) {
+        map.removeLayer(polygonLayer);
+    }
+
+    if (locations.length) {
+        // Add markers for each location
+        locations.forEach(([lng, lat]) => {
+            const marker = L.marker([lat, lng]).addTo(map);
+            markers.push(marker);
+        });
+
+        // Draw a polygon if there are enough points
+        if (locations.length >= 3) {
+            const closedLoop = [...locations, locations[0]]; // Close the loop
+            const latLngs = closedLoop.map(([lng, lat]) => [lat, lng]);
+
+            polygonLayer = L.polygon(latLngs, { color: 'grey', fillOpacity: 0.3 }).addTo(map);
+            map.fitBounds(polygonLayer.getBounds());
+        }
+    }
 }

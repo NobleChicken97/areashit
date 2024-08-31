@@ -58,39 +58,58 @@ button {
     width: 45%; /* Adjusted width for buttons */
 }
 
-/* Green Button */
+/* Saffron Button */
 button#capture {
-    background-color: #28a745;
-    border-color: #28a745;
+    background-color: #FF9933; /* Saffron color */
+    border-color: #FF9933;
 }
 
 button#capture:hover {
-    background-color: #218838;
-    border-color: #1e7e34;
+    background-color: #e68a00;
+    border-color: #e68a00;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 button#capture:active {
-    background-color: #1c7430;
+    background-color: #cc7a00;
     box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Orange Button */
+/* White Button */
 button#show-images {
-    background-color: #ff9800;
-    border-color: #ff9800;
+    background-color: #ffffff; /* White color */
+    border-color: #ffffff;
+    color: #333; /* Darker text for contrast */
 }
 
 button#show-images:hover {
-    background-color: #e67e22;
-    border-color: #d35400;
+    background-color: #e0e0e0;
+    border-color: #e0e0e0;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 button#show-images:active {
-    background-color: #c26a00;
+    background-color: #cccccc;
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Green Button */
+button#show-map {
+    background-color: #138808; /* Green color */
+    border-color: #138808;
+}
+
+button#show-map:hover {
+    background-color: #0e6e00;
+    border-color: #0e6e00;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+button#show-map:active {
+    background-color: #0b5a00;
     box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
@@ -148,7 +167,7 @@ h1#area-disp {
 }
 
 /* Button Layout Adjustment */
-button#capture, button#show-images {
+button#capture, button#show-images, button#show-map {
     display: inline-block;
     width: 45%;
     box-sizing: border-box;
